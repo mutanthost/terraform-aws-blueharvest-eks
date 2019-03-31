@@ -1,6 +1,6 @@
 variable "availability_zones" {
   description = "AWS availability zones."
-  default     = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  default     = ["us-east-2a", "us-east-2b", "us-east2c"]
 }
 
 variable "eks_ami_id" {
@@ -25,7 +25,7 @@ variable "asg_max_size" {
 
 variable "cluster_name" {
   description = "Name of the EKS Cluster."
-  default     = "blueharvest"
+  default     = "mutanthost-eks"
 }
 
 variable "cluster_zone" {
