@@ -14,7 +14,7 @@ module "eks" {
                          "autoscaling_enabled", true,
                          "protect_from_scale_in", false,
                          "ami_id", var.eks_ami_id,
-                         "key_name", aws_key_pair.blueharvest-terraform-eks.key_name,
+                         "key_name", aws_key_pair.mutanthost-eks.key_name,
                          "subnets", "${join(",", module.vpc.private_subnets)}",
                      )
   )}"
