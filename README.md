@@ -9,11 +9,10 @@ Terraform module that provisions an EKS cluster including a VPC, a VPN, Helm, Ku
 * You have [`aws-iam-authenticator`](https://github.com/kubernetes-sigs/aws-iam-authenticator#4-set-up-kubectl-to-use-authentication-tokens-provided-by-aws-iam-authenticator-for-kubernetes) on your shell's PATH.
 
 ## Usage example
-
-A full example leveraging other community modules is contained in the [examples directory](https://github.com/blue-harvest/terraform-aws-blueharvest-eks/tree/master/examples). Here's the gist of using it via the Terraform registry:
+ Here's the gist of using it via the Terraform registry:
 
 ```hcl
-module "blueharvest-eks" {
+module "mutanthost-eks" {
   source              = "mutanthost-eks/aws"
   availability_zones  = ["us-east-2a", "us-east-2b", "us-east-2c"]
   eks_ami_id          = "put-ami-id-here" //amazon-eks-node-1.11-v20190109
