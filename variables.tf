@@ -1,6 +1,6 @@
 variable "availability_zones" {
   description = "AWS availability zones."
-  default     = ["us-east-2a", "us-east-2b", "us-east2c"]
+  default     = ["us-east-2a", "us-east-2b", "us-east-2c"]
 }
 
 variable "eks_ami_id" {
