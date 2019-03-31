@@ -1,5 +1,5 @@
-resource "aws_instance" "mutanthost-terraform-eks-bastion" {
-  key_name               = "${aws_key_pair.mutanthost-terraform-eks.key_name}"
+resource "aws_instance" "mutanthost-eks-bastion" {
+  key_name               = "${aws_key_pair.mutanthost-eks.key_name}"
   vpc_security_group_ids = ["${aws_security_group.mutanthost-eks-bastion.id}"]
   availability_zone      = "${var.availability_zones[0]}"
   subnet_id              = "${module.vpc.public_subnets[0]}"
