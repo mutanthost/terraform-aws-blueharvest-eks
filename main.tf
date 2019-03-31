@@ -11,17 +11,17 @@ data "aws_ami" "ubuntu" {
 
 provider "tls" {}
 
-resource "tls_private_key" "blueharvest-terraform-eks" {
+resource "tls_private_key" "mutanthost-eks" {
   algorithm = "RSA"
   rsa_bits  = "2048"
 
   provisioner "local-exec" {
-    command     = "echo \"${tls_private_key.blueharvest-terraform-eks.private_key_pem}\" >> ./\"${var.cluster_name}\"_key"
+    command     = "echo \"${tls_private_key.mutanthost-eks.private_key_pem}\" >> ./\"${var.cluster_name}\"_key"
     interpreter = ["/bin/sh", "-c"]
   }
 
   provisioner "local-exec" {
-    command     = "echo \"${tls_private_key.blueharvest-terraform-eks.private_key_pem}\" >> ./\"${var.cluster_name}\"_key.pub"
+    command     = "echo \"${tls_private_key.mutanthost-eks.private_key_pem}\" >> ./\"${var.cluster_name}\"_key.pub"
     interpreter = ["/bin/sh", "-c"]
   }
 
@@ -31,7 +31,7 @@ resource "tls_private_key" "blueharvest-terraform-eks" {
   }
 }
 
-resource "aws_key_pair" "blueharvest-terraform-eks" {
+resource "aws_key_pair" "mutanthost-eks" {
   key_name   = "${var.cluster_name}"
-  public_key = "${tls_private_key.blueharvest-terraform-eks.public_key_openssh}"
+  public_key = "${tls_private_key.mutanthost-eks.public_key_openssh}"
 }
