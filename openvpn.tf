@@ -1,4 +1,4 @@
-resource "aws_security_group" "blueharvest-terraform-eks-openvpn" {
+resource "aws_security_group" "mutanthost-eks-openvpn" {
   name   = "${var.cluster_name}-openvpn"
   vpc_id = "${module.vpc.vpc_id}"
 
@@ -39,17 +39,17 @@ resource "aws_security_group" "blueharvest-terraform-eks-openvpn" {
   }
 }
 
-resource "aws_instance" "blueharvest-terraform-eks-openvpn" {
+resource "aws_instance" "mutanthost-eks-openvpn" {
   instance_type = "t3.medium"
   ami           = "${data.aws_ami.ubuntu.id}"
 
   vpc_security_group_ids = [
-    "${aws_security_group.blueharvest-terraform-eks-openvpn.id}",
+    "${aws_security_group.mutanthost-eks-openvpn.id}",
   ]
 
   availability_zone = "${var.availability_zones[0]}"
   subnet_id         = "${module.vpc.public_subnets[0]}"
-  key_name          = "${aws_key_pair.blueharvest-terraform-eks.key_name}"
+  key_name          = "${aws_key_pair.mutanthost-eks.key_name}"
 
   tags = {
     Name        = "${var.cluster_name}-openvpn"
@@ -62,7 +62,7 @@ resource "aws_instance" "blueharvest-terraform-eks-openvpn" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = "${tls_private_key.blueharvest-terraform-eks.private_key_pem}"
+      private_key = "${tls_private_key.mutanthost-eks.private_key_pem}"
     }
   }
 
@@ -78,17 +78,17 @@ resource "aws_instance" "blueharvest-terraform-eks-openvpn" {
       "cp ~/scripts/build-server-key.sh ~/openvpn",
       "cp ~/scripts/revoke.sh ~/openvpn",
       "cd ~/openvpn",
-      "./setup.sh ${aws_instance.blueharvest-terraform-eks-openvpn.public_ip} ${var.cluster_name}",
+      "./setup.sh ${aws_instance.mutanthost-eks-openvpn.public_ip} ${var.cluster_name}",
     ]
 
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = "${tls_private_key.blueharvest-terraform-eks.private_key_pem}"
+      private_key = "${tls_private_key.mutanthost-eks.private_key_pem}"
     }
   }
 
   provisioner "local-exec" {
-    command = "sftp -oStrictHostKeyChecking=no -i ${var.cluster_name}_key ubuntu@${aws_instance.blueharvest-terraform-eks-openvpn.public_ip}:client-configs/files/${var.cluster_name}.ovpn ./"
+    command = "sftp -oStrictHostKeyChecking=no -i ${var.cluster_name}_key ubuntu@${aws_instance.mutanthost-eks-openvpn.public_ip}:client-configs/files/${var.cluster_name}.ovpn ./"
   }
 }
