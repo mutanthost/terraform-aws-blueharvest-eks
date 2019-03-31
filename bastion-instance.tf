@@ -1,6 +1,6 @@
-resource "aws_instance" "blueharvest-terraform-eks-bastion" {
-  key_name               = "${aws_key_pair.blueharvest-terraform-eks.key_name}"
-  vpc_security_group_ids = ["${aws_security_group.blueharvest-terraform-eks-bastion.id}"]
+resource "aws_instance" "mutanthost-terraform-eks-bastion" {
+  key_name               = "${aws_key_pair.mutanthost-terraform-eks.key_name}"
+  vpc_security_group_ids = ["${aws_security_group.mutanthost-eks-bastion.id}"]
   availability_zone      = "${var.availability_zones[0]}"
   subnet_id              = "${module.vpc.public_subnets[0]}"
   ami                    = "${data.aws_ami.ubuntu.id}"
@@ -11,7 +11,7 @@ resource "aws_instance" "blueharvest-terraform-eks-bastion" {
   }
 }
 
-resource "aws_security_group" "blueharvest-terraform-eks-bastion" {
+resource "aws_security_group" "mutanthost-eks-bastion" {
   vpc_id = "${module.vpc.vpc_id}"
   name   = "${var.cluster_name}-bastion"
 
