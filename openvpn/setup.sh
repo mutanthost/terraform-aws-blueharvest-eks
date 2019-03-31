@@ -2,12 +2,12 @@
 
 echo "............ STEP 2 - Configuring CA ............"
 
-KEY_COUNTRY="NL"
-KEY_PROVINCE="North Holland"
-KEY_CITY="Amsterdam"
-KEY_ORG="Blue Harvest"
-KEY_EMAIL="vpn@blueharvest.io"
-KEY_OU="Blue Harvest"
+KEY_COUNTRY="US"
+KEY_PROVINCE="Colorado"
+KEY_CITY="Denver"
+KEY_ORG="Mutant Host"
+KEY_EMAIL="matthewhuston@gmail.com"
+KEY_OU="Mutant Host"
 
 PUBLIC_IP=$1
 CLIENT_NAME=$2
