@@ -1,11 +1,11 @@
 variable "availability_zones" {
   description = "AWS availability zones."
-  default     = ["us-east-2a", "us-east-2b", "us-east2c"]
+  default     = ["us-east-2a", "us-east-2b", "us-east-2c"]
 }
 
 variable "eks_ami_id" {
   description = "AMI used for the worker nodes. Default amazon-eks-node-1.11-v20190109."
-  default     = "ami-01e08d22b9439c15a"
+  default     = "ami-916f59f4"
 }
 
 variable "instance_type" {
